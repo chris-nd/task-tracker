@@ -40,6 +40,25 @@ def create_parser() -> argparse.ArgumentParser:
     add_parser.add_argument("task", nargs="+", help="La description de la tâche")
     add_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
+    # Parser pour la commande "list"
+    list_parser = subparsers.add_parser(
+        "list",
+        usage="task-cli list [status]",
+        description="Lister les tâches",
+        prog="task-cli list",
+        epilog="Pour plus d'informations, utilisez l'option -h ou --help",
+        add_help=False,
+    )
+
+    list_parser.add_argument(
+        "status",
+        nargs="?",
+        help="Afficher les tâches par statut",
+        choices=["todo", "in-progress", "done"],
+    )
+
+    list_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+
     return parser
 
 
@@ -51,6 +70,8 @@ def main():
 
     if args.command == "add":
         print(f'Tâche ajoutée : {args.task}')
+    elif args.command == "list":
+        print(f'Tâches affichées : {args.status}')
 
 
 if __name__ == "__main__":
