@@ -62,6 +62,24 @@ def create_parser() -> argparse.ArgumentParser:
     return parser
 
 
+# Gestion de la commande "add"
+def handle_add(task: list[str]):
+    """
+    Gère la commande d'ajout de tâche.
+    """
+
+    # Gestion de la liste de tâche
+    print(f'Tâche ajoutée : {task}')
+
+
+# Gestion de la commande "list"
+def handle_list(status: str | None):
+    """
+    Gère la commande de liste des tâches.
+    """
+    print(f'Tâches affichées : {status}')
+
+
 def main():
     "Fonction de lancement du programme."
 
@@ -69,9 +87,9 @@ def main():
     args = parser.parse_args()
 
     if args.command == "add":
-        print(f'Tâche ajoutée : {args.task}')
+        handle_add(args.task)
     elif args.command == "list":
-        print(f'Tâches affichées : {args.status}')
+        handle_list(args.status)
 
 
 if __name__ == "__main__":
