@@ -24,6 +24,22 @@ def create_parser() -> argparse.ArgumentParser:
     # Flags d'options du parseur
     parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
+    # Sous-parseurs pour regrouper les parsers des sous commandes
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # Parser pour la commande "add"
+    add_parser = subparsers.add_parser(
+        "add",
+        usage="task-cli add <task>",
+        description="Ajouter une tâche",
+        prog="task-cli add",
+        epilog="Pour plus d'informations, utilisez l'option -h ou --help",
+        add_help=False,
+    )
+
+    add_parser.add_argument("task", nargs="+", help="La description de la tâche")
+    add_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+
     return parser
 
 
@@ -32,6 +48,9 @@ def main():
 
     parser = create_parser()
     args = parser.parse_args()
+
+    if args.command == "add":
+        print(f'Tâche ajoutée : {args.task}')
 
 
 if __name__ == "__main__":
