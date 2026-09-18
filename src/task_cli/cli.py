@@ -3,6 +3,8 @@
 import argparse
 import sys
 
+from task_cli.task import list_tasks
+
 
 # Création un parser de ligne de commande
 def create_parser() -> argparse.ArgumentParser:
@@ -104,7 +106,7 @@ def main():
         handle_add(args.task)
         return 0
     elif args.command == "list":
-        handle_list(args.status)
+        list_tasks()
         return 0
 
 
