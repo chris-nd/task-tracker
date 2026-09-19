@@ -69,7 +69,35 @@ def save_tasks(tasks: list[dict]) -> None:
         print(f"Erreur : impossible de sauvegarder les tâches. {exc}", file=sys.stderr)
 
 
-def update_task() -> None:
+def update_task(task_id: int) -> None:
     """
     Mettre à jour une tâche dans le fichier JSON.
     """
+
+
+def remove_tasks(tasks_id: list[int]) -> None:
+    """
+    Supprimer une ou plusieurs tâches du fichier JSON.
+    """
+    data = load_tasks()
+
+    if not data:
+        print("Aucune tâche enregistrée.")
+        return
+
+    task_to_delete = [task for task in data if task.get("id") in tasks_id]
+
+    if not task_to_delete:
+        print("Tâche non trouvée.")
+        return
+
+    try:
+        with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
+            for task in task_to_delete:
+                data.remove(task)
+            json.dump(data, f)
+    except OSError as exc:
+        print(f"Erreur : impossible de supprimer les tâches. {exc}", file=sys.stderr)
+
+    for task in task_to_delete:
+        print(f"Tâche supprimée : [ID: {task.get('id')} - {task.get('description')}].")
