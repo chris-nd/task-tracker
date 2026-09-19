@@ -1,6 +1,7 @@
 "Modèle d'écriture et de lecture des données de tâches"
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -43,10 +44,26 @@ def load_tasks() -> list[dict]:
         return []
 
 
-def save_tasks() -> None:
+def save_tasks(tasks: list[dict]) -> None:
     """
     Sauvegarder les tâches dans le fichier JSON.
     """
+
+    if not tasks:
+        return
+
+    dir_path = Path("src/task_cli/data/")
+
+    if not dir_path.exists():
+        os.makedirs(dir_path)
+
+    data = load_tasks() + tasks
+
+    try:
+        with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
+            json.dump(data, f)
+    except OSError as exc:
+        print(f"Erreur : impossible de sauvegarder les tâches. {exc}", file=sys.stderr)
 
 
 def update_task() -> None:
