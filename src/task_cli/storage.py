@@ -47,6 +47,9 @@ def load_tasks() -> list[dict]:
 def save_tasks(tasks: list[dict]) -> None:
     """
     Sauvegarder les tâches dans le fichier JSON.
+
+    :param tasks: Une liste de tâches à sauvegarder.
+    :type tasks: list[dict]
     """
 
     if not tasks:
