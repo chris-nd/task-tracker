@@ -2,7 +2,7 @@
 
 import argparse
 
-from task_cli.task import create_tasks, delete_task, list_tasks
+from task_cli.task import create_tasks, delete_tasks, list_tasks
 
 
 # Création un parser de ligne de commande
@@ -73,11 +73,11 @@ def main():
     if args.command == "add":
         create_tasks(args.task)
         return 0
+    elif args.command == "delete":
+        delete_tasks(args.id)
+        return 0
     elif args.command == "list":
         list_tasks()
-        return 0
-    elif args.command == "delete":
-        delete_task(args.task_id)
         return 0
 
 
