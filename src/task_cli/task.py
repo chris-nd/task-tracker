@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from task_cli.storage import load_tasks, save_tasks
+from task_cli.storage import load_tasks, remove_tasks, save_tasks
 
 
 def create_tasks(descriptions: list[str]) -> None:
@@ -43,36 +43,15 @@ def update_task(task) -> None:
     """
 
 
-def delete_task(task_id: int) -> None:
+def delete_tasks(tasks_id: list[int]) -> None:
     """
     Supprime une tâche existante.
 
-    :param task_id: L'identifiant de la tâche à supprimer
-    :type task_id: int
+    :param tasks_id: Une liste d'identifiants de tâches à supprimer
+    :type tasks_id: list[int]
     """
 
-    data = load_tasks()
-
-    # Gestion d'erreur
-    if not data:
-        print("Aucune tâche enregistrée.")
-        return
-
-    # Recherche de la tâche à supprimer
-    task_to_delete = None
-    for task in data:
-        if task.get("id") == task_id:
-            task_to_delete = task
-            break
-
-    if not task_to_delete:
-        print("Tâche non trouvée.")
-        return
-
-    # Suppression de la tâche
-    data.remove(task_to_delete)
-    print(f"Tâche supprimée : [ID: {task_id} - {task_to_delete.get('description')}].")
-    save_tasks(data)
+    remove_tasks(tasks_id)
 
 
 # Lister les tâches
