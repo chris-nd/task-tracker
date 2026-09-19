@@ -11,3 +11,6 @@ wheels/
 
 # Linter / Formater
 .ruff_cache
+
+# Data files
+src/task_cli/data/
