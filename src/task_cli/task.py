@@ -43,13 +43,36 @@ def update_task(task) -> None:
     """
 
 
-def delete_task(task) -> None:
+def delete_task(task_id: int) -> None:
     """
     Supprime une tâche existante.
 
-    :param task: La tâche à supprimer
-    :type task: Task
+    :param task_id: L'identifiant de la tâche à supprimer
+    :type task_id: int
     """
+
+    data = load_tasks()
+
+    # Gestion d'erreur
+    if not data:
+        print("Aucune tâche enregistrée.")
+        return
+
+    # Recherche de la tâche à supprimer
+    task_to_delete = None
+    for task in data:
+        if task.get("id") == task_id:
+            task_to_delete = task
+            break
+
+    if not task_to_delete:
+        print("Tâche non trouvée.")
+        return
+
+    # Suppression de la tâche
+    data.remove(task_to_delete)
+    print(f"Tâche supprimée : [ID: {task_id} - {task_to_delete.get('description')}].")
+    save_tasks(data)
 
 
 # Lister les tâches
