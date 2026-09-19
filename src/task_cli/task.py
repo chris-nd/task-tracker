@@ -1,18 +1,37 @@
 "Module décrivant les opérations sur les tâches"
 
-from task_cli.storage import load_tasks
+from datetime import datetime
+
+from task_cli.storage import load_tasks, save_tasks
 
 
-def create_task(desc: str) -> list:
+def create_tasks(descriptions: list[str]) -> None:
     """
     Crée une nouvelle tâche.
 
-    :param desc: La description de la tâche
-    :type desc: str
-    :return: La tâche créée
-    :rtype: Task
+    :param descriptions: Les descriptions des tâches
+    :type descriptions: list[str]
     """
-    return []
+
+    # Gestion des erreurs
+    if not descriptions:
+        print("Erreur : La description de la tâche est vide.")
+        return
+
+    tasks = []
+    task_id = len(load_tasks()) + 1
+    for desc in descriptions:
+        task = {
+            "id": task_id,
+            "description": desc,
+            "status": "todo",
+            "created_at": datetime.now().strftime("%Y-%m-%d to %H:%M"),
+            "updated_at": datetime.now().strftime("%Y-%m-%d to %H:%M")
+        }
+        tasks.append(task)
+        task_id += 1
+
+    save_tasks(tasks)
 
 
 def update_task(task) -> None:
