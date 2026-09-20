@@ -1,3 +1,13 @@
+## v0.10.0-b0 (2026-09-20)
+
+### Refactor
+
+- **cli**: retourne le code d'erreur une seule fois
+- **cli**: réorganise le code
+- **task**: mise à jour des import et des appels de fonction
+- **storage**: usage de nom de fonction plus approprié
+- Supprime le code inutile
+
 ## v0.10.0-a0 (2026-09-20)
 
 ### Feat
