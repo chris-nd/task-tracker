@@ -2,7 +2,14 @@
 
 import argparse
 
-from task_cli.task import create_tasks, delete_tasks, list_tasks, mark_done, mark_in_progress
+from task_cli.task import (
+    create_tasks,
+    delete_tasks,
+    list_tasks,
+    mark_done,
+    mark_in_progress,
+    update_task,
+)
 
 
 # Création un parser de ligne de commande
@@ -41,6 +48,20 @@ def create_parser() -> argparse.ArgumentParser:
 
     add_parser.add_argument("task", nargs="+", help="La description de la tâche")
     add_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+
+    # Parser pour la commande "update"
+    update_parser = subparsers.add_parser(
+        "update",
+        prog="task-cli update",
+        usage="task-cli update <id> <description>",
+        description="Mettre à jour une tâche",
+        epilog="Pour plus d'informations, utilisez l'option -h ou --help",
+        add_help=False,
+    )
+
+    update_parser.add_argument("id", type=int, nargs=1, help="Numéro de la tâche à mettre à jour")
+    update_parser.add_argument("description", help="La nouvelle description de la tâche")
+    update_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
     # Parser ppour la command mark-in-progress
     mark_in_progress_parser = subparsers.add_parser(
@@ -111,6 +132,9 @@ def main():
 
     if args.command == "add":
         create_tasks(args.task)
+        return 0
+    elif args.command == "update":
+        update_task(args.id[0], args.description)
         return 0
     elif args.command == "delete":
         delete_tasks(args.id)
