@@ -89,6 +89,41 @@ def mark_in_progress(task_id: int) -> None:
     update_data(data)
 
 
+# Marquer une tâche comme terminé
+def mark_done(task_id: int) -> None:
+    """
+    Marque une tâche comme terminée.
+
+    :param task_id: L'identifiant de la tâche à marquer comme terminée
+    :type task_id: int
+    """
+
+    # Gestion des erreurs
+    if not task_id:
+        print("Erreur : Aucun identifiant de tâche spécifié.")
+        return
+
+    if not isinstance(task_id, int):
+        print("Erreur : L'identifiant de la tâche doit être un entier.")
+        return
+
+    data = load_tasks()
+
+    if not data:
+        print("Aucune tâche trouvée.")
+        return
+
+    for task in data:
+        if task["id"] == task_id:
+            task["status"] = "done"
+            task["updated_at"] = datetime.now().strftime("%Y-%m-%d to %H:%M")
+            break
+    else:
+        print("Tâche non trouvée.")
+
+    update_data(data)
+
+
 # Lister les tâches
 def list_tasks() -> None:
     """
