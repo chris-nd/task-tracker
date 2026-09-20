@@ -2,7 +2,7 @@
 
 import argparse
 
-from task_cli.task import create_tasks, delete_tasks, list_tasks
+from task_cli.task import create_tasks, delete_tasks, list_tasks, mark_in_progress
 
 
 # Création un parser de ligne de commande
@@ -41,6 +41,19 @@ def create_parser() -> argparse.ArgumentParser:
 
     add_parser.add_argument("task", nargs="+", help="La description de la tâche")
     add_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+
+    # Parser ppour la command mark-in-progress
+    mark_in_progress_parser = subparsers.add_parser(
+        "mark-in-progress",
+        prog="task-cli mark-in-progress",
+        usage="task-cli mark-in-progress <id>",
+        description="Marquer une tâche comme en cours",
+        epilog="Pour plus d'informations, utilisez l'option -h ou --help",
+        add_help=False,
+    )
+
+    mark_in_progress_parser.add_argument("id", type=int, nargs=1, help="Numéro de la tâche à marquer comme en cours")
+    mark_in_progress_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
     # Parser pour la commande delete
     delete_parser = subparsers.add_parser(
@@ -88,6 +101,9 @@ def main():
         return 0
     elif args.command == "delete":
         delete_tasks(args.id)
+        return 0
+    elif args.command == "mark-in-progress":
+        mark_in_progress(args.id[0])
         return 0
     elif args.command == "list":
         list_tasks()
