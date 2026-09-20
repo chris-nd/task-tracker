@@ -63,6 +63,19 @@ def create_parser() -> argparse.ArgumentParser:
     update_parser.add_argument("description", help="La nouvelle description de la tâche")
     update_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
+        # Parser pour la commande delete
+    delete_parser = subparsers.add_parser(
+        "delete",
+        prog="task-cli delete",
+        usage="task-cli delete <id>",
+        description="Supprimer une tâche",
+        epilog="Pour plus d'informations, utilisez l'option -h ou --help",
+        add_help=False,
+    )
+
+    delete_parser.add_argument("id", type=int, nargs="+", help="Numéro de la tâche à supprimer")
+    delete_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+
     # Parser ppour la command mark-in-progress
     mark_in_progress_parser = subparsers.add_parser(
         "mark-in-progress",
@@ -88,19 +101,6 @@ def create_parser() -> argparse.ArgumentParser:
 
     mark_done_parser.add_argument("id", type=int, nargs=1, help="Numéro de la tâche à marquer comme terminée")
     mark_done_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
-
-    # Parser pour la commande delete
-    delete_parser = subparsers.add_parser(
-        "delete",
-        prog="task-cli delete",
-        usage="task-cli delete <id>",
-        description="Supprimer une tâche",
-        epilog="Pour plus d'informations, utilisez l'option -h ou --help",
-        add_help=False,
-    )
-
-    delete_parser.add_argument("id", type=int, nargs="+", help="Numéro de la tâche à supprimer")
-    delete_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
     # Parser pour la commande "list"
     list_parser = subparsers.add_parser(
