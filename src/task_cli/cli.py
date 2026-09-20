@@ -132,22 +132,18 @@ def main():
 
     if args.command == "add":
         create_tasks(args.task)
-        return 0
     elif args.command == "update":
         update_task(args.id[0], args.description)
-        return 0
     elif args.command == "delete":
         delete_tasks(args.id)
-        return 0
     elif args.command == "mark-in-progress":
         mark_in_progress(args.id[0])
-        return 0
     elif args.command == "mark-done":
         mark_done(args.id[0])
-        return 0
     elif args.command == "list":
         list_tasks()
-        return 0
+
+    return 0
 
 
 if __name__ == "__main__":
