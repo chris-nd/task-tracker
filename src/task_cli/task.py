@@ -34,13 +34,44 @@ def create_tasks(descriptions: list[str]) -> None:
     save_tasks(tasks)
 
 
-def update_task(task) -> None:
+def update_task(task_id: int, new_description: str) -> None:
     """
-    Met à jour une tâche existante.
+    Met à jour la description d'une tâche existante.
 
-    :param task: La tâche à mettre à jour
-    :type task: Task
+    :param task_id: L'identifiant de la tâche à mettre à jour
+    :param new_description: La nouvelle description de la tâche
+    :type task_id: int
+    :type new_description: str
     """
+
+    # Gestion des erreurs
+    if not task_id or not new_description:
+        print("Erreur : Aucun identifiant de tâche ou description spécifié.")
+        return
+
+    if not isinstance(task_id, int):
+        print("Erreur : L'identifiant de la tâche doit être un entier.")
+        return
+
+    if not isinstance(new_description, str):
+        print("Erreur : La description de la tâche doit être une chaîne de caractères.")
+        return
+
+    data = load_tasks()
+
+    if not data:
+        print("Aucune tâche trouvée.")
+        return
+
+    for task in data:
+        if task["id"] == task_id:
+            task["description"] = new_description
+            task["updated_at"] = datetime.now().strftime("%Y-%m-%d to %H:%M")
+            break
+    else:
+        print("Tâche non trouvée.")
+
+    update_data(data)
 
 
 def delete_tasks(tasks_id: list[int]) -> None:
