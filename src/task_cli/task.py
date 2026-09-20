@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from task_cli.storage import load_tasks, remove_tasks, save_tasks, update_data
+from task_cli.storage import load_data, remove_data, save_data, update_data
 
 
 def create_tasks(descriptions: list[str]) -> None:
@@ -19,7 +19,7 @@ def create_tasks(descriptions: list[str]) -> None:
         return
 
     tasks = []
-    task_id = len(load_tasks()) + 1
+    task_id = len(load_data()) + 1
     for desc in descriptions:
         task = {
             "id": task_id,
@@ -31,7 +31,7 @@ def create_tasks(descriptions: list[str]) -> None:
         tasks.append(task)
         task_id += 1
 
-    save_tasks(tasks)
+    save_data(tasks)
 
 
 def update_task(task_id: int, new_description: str) -> None:
@@ -57,7 +57,7 @@ def update_task(task_id: int, new_description: str) -> None:
         print("Erreur : La description de la tâche doit être une chaîne de caractères.")
         return
 
-    data = load_tasks()
+    data = load_data()
 
     if not data:
         print("Aucune tâche trouvée.")
@@ -82,7 +82,7 @@ def delete_tasks(tasks_id: list[int]) -> None:
     :type tasks_id: list[int]
     """
 
-    remove_tasks(tasks_id)
+    remove_data(tasks_id)
 
 
 # Marquer une tâche en cours
@@ -103,7 +103,7 @@ def mark_in_progress(task_id: int) -> None:
         print("Erreur : L'identifiant de la tâche doit être un entier.")
         return
 
-    data = load_tasks()
+    data = load_data()
 
     if not data:
         print("Aucune tâche trouvée.")
@@ -138,7 +138,7 @@ def mark_done(task_id: int) -> None:
         print("Erreur : L'identifiant de la tâche doit être un entier.")
         return
 
-    data = load_tasks()
+    data = load_data()
 
     if not data:
         print("Aucune tâche trouvée.")
@@ -163,7 +163,7 @@ def list_tasks() -> None:
     :return: Une liste de tâches.
     """
 
-    tasks = load_tasks()
+    tasks = load_data()
 
     # # Gestion des erreurs
     if not tasks:
