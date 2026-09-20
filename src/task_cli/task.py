@@ -26,7 +26,7 @@ def create_tasks(descriptions: list[str]) -> None:
             "description": desc,
             "status": "todo",
             "created_at": datetime.now().strftime("%Y-%m-%d to %H:%M"),
-            "updated_at": datetime.now().strftime("%Y-%m-%d to %H:%M")
+            "updated_at": datetime.now().strftime("%Y-%m-%d to %H:%M"),
         }
         tasks.append(task)
         task_id += 1

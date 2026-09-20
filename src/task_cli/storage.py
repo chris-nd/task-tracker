@@ -29,18 +29,22 @@ def load_data() -> list[dict]:
 
         if not isinstance(data, list):
             print(
-                "Erreur : le fichier tasks.json ne contient pas une liste de tâches.", 
-                file=sys.stderr
+                "Erreur : le fichier tasks.json ne contient pas une liste de tâches.",
+                file=sys.stderr,
             )
             return []
 
         return data
 
     except json.JSONDecodeError:
-        print("Erreur : le fichier tasks.json n'est pas un JSON valide.", file=sys.stderr)
+        print(
+            "Erreur : le fichier tasks.json n'est pas un JSON valide.", file=sys.stderr
+        )
         return []
     except OSError as exc:
-        print(f"Erreur : impossible de lire le fichier tasks.json. {exc}", file=sys.stderr)
+        print(
+            f"Erreur : impossible de lire le fichier tasks.json. {exc}", file=sys.stderr
+        )
         return []
 
 
@@ -87,7 +91,10 @@ def update_data(tasks: list[dict]) -> None:
         with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
             json.dump(tasks, f)
     except OSError as exc:
-        print(f"Erreur : impossible de mettre à jour les tâches. {exc}", file=sys.stderr)
+        print(
+            f"Erreur : impossible de mettre à jour les tâches. {exc}", file=sys.stderr
+        )
+
 
 def remove_data(tasks_id: list[int]) -> None:
     """

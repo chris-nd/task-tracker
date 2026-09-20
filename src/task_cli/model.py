@@ -6,6 +6,7 @@ from enum import Enum
 
 class TaskStatus(Enum):
     "Enumération des statuts possibles pour une tâche."
+
     TODO = "todo"
     IN_PROGRESS = "in-progress"
     DONE = "done"
@@ -14,6 +15,7 @@ class TaskStatus(Enum):
 @dataclass
 class Task:
     "Classe représentant une tâche."
+
     id: int
     description: str
     status: TaskStatus

@@ -59,11 +59,15 @@ def create_parser() -> argparse.ArgumentParser:
         add_help=False,
     )
 
-    update_parser.add_argument("id", type=int, nargs=1, help="Numéro de la tâche à mettre à jour")
-    update_parser.add_argument("description", help="La nouvelle description de la tâche")
+    update_parser.add_argument(
+        "id", type=int, nargs=1, help="Numéro de la tâche à mettre à jour"
+    )
+    update_parser.add_argument(
+        "description", help="La nouvelle description de la tâche"
+    )
     update_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
-        # Parser pour la commande delete
+    # Parser pour la commande delete
     delete_parser = subparsers.add_parser(
         "delete",
         prog="task-cli delete",
@@ -73,7 +77,9 @@ def create_parser() -> argparse.ArgumentParser:
         add_help=False,
     )
 
-    delete_parser.add_argument("id", type=int, nargs="+", help="Numéro de la tâche à supprimer")
+    delete_parser.add_argument(
+        "id", type=int, nargs="+", help="Numéro de la tâche à supprimer"
+    )
     delete_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
 
     # Parser ppour la command mark-in-progress
@@ -86,8 +92,12 @@ def create_parser() -> argparse.ArgumentParser:
         add_help=False,
     )
 
-    mark_in_progress_parser.add_argument("id", type=int, nargs=1, help="Numéro de la tâche à marquer comme en cours")
-    mark_in_progress_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+    mark_in_progress_parser.add_argument(
+        "id", type=int, nargs=1, help="Numéro de la tâche à marquer comme en cours"
+    )
+    mark_in_progress_parser.add_argument(
+        "-h", "--help", action="help", help="Afficher l'aide"
+    )
 
     # Parser pour la commande mark-done
     mark_done_parser = subparsers.add_parser(
@@ -99,8 +109,12 @@ def create_parser() -> argparse.ArgumentParser:
         add_help=False,
     )
 
-    mark_done_parser.add_argument("id", type=int, nargs=1, help="Numéro de la tâche à marquer comme terminée")
-    mark_done_parser.add_argument("-h", "--help", action="help", help="Afficher l'aide")
+    mark_done_parser.add_argument(
+        "id", type=int, nargs=1, help="Numéro de la tâche à marquer comme terminée"
+    )
+    mark_done_parser.add_argument(
+        "-h", "--help", action="help", help="Afficher l'aide"
+    )
 
     # Parser pour la commande "list"
     list_parser = subparsers.add_parser(
