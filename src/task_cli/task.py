@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from task_cli.storage import load_tasks, remove_tasks, save_tasks
+from task_cli.storage import load_tasks, remove_tasks, save_tasks, update_data
 
 
 def create_tasks(descriptions: list[str]) -> None:
@@ -52,6 +52,41 @@ def delete_tasks(tasks_id: list[int]) -> None:
     """
 
     remove_tasks(tasks_id)
+
+
+# Marquer une tâche en cours
+def mark_in_progress(task_id: int) -> None:
+    """
+    Marque une tâche comme en cours.
+
+    :param task_id: L'identifiant de la tâche à marquer comme en cours
+    :type task_id: int
+    """
+
+    # Gestion des erreurs
+    if not task_id:
+        print("Erreur : Aucun identifiant de tâche spécifié.")
+        return
+
+    if not isinstance(task_id, int):
+        print("Erreur : L'identifiant de la tâche doit être un entier.")
+        return
+
+    data = load_tasks()
+
+    if not data:
+        print("Aucune tâche trouvée.")
+        return
+
+    for task in data:
+        if task["id"] == task_id:
+            task["status"] = "in-progress"
+            task["updated_at"] = datetime.now().strftime("%Y-%m-%d to %H:%M")
+            break
+    else:
+        print("Tâche non trouvée.")
+
+    update_data(data)
 
 
 # Lister les tâches
