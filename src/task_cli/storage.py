@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 
-def load_tasks() -> list[dict]:
+def load_data() -> list[dict]:
     """
     Charger les tâches depuis le fichier JSON.
 
@@ -44,7 +44,7 @@ def load_tasks() -> list[dict]:
         return []
 
 
-def save_tasks(tasks: list[dict]) -> None:
+def save_data(tasks: list[dict]) -> None:
     """
     Sauvegarder les tâches dans le fichier JSON.
 
@@ -60,7 +60,7 @@ def save_tasks(tasks: list[dict]) -> None:
     if not dir_path.exists():
         os.makedirs(dir_path)
 
-    data = load_tasks() + tasks
+    data = load_data() + tasks
 
     try:
         with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
@@ -89,11 +89,11 @@ def update_data(tasks: list[dict]) -> None:
     except OSError as exc:
         print(f"Erreur : impossible de mettre à jour les tâches. {exc}", file=sys.stderr)
 
-def remove_tasks(tasks_id: list[int]) -> None:
+def remove_data(tasks_id: list[int]) -> None:
     """
     Supprimer une ou plusieurs tâches du fichier JSON.
     """
-    data = load_tasks()
+    data = load_data()
 
     if not data:
         print("Aucune tâche enregistrée.")
