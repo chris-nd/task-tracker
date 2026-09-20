@@ -69,11 +69,25 @@ def save_tasks(tasks: list[dict]) -> None:
         print(f"Erreur : impossible de sauvegarder les tâches. {exc}", file=sys.stderr)
 
 
-def update_task(task_id: int) -> None:
+def update_data(tasks: list[dict]) -> None:
     """
-    Mettre à jour une tâche dans le fichier JSON.
+    Mettre à jour les tâches dans le fichier JSON.
     """
 
+    # Gestion des erreurs
+    if not tasks:
+        print("Erreur : Aucune tâche à mettre à jour.")
+        return
+
+    if not isinstance(tasks, list):
+        print("Erreur : Les tâches doivent être une liste pour être mises à jour.")
+        return
+
+    try:
+        with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
+            json.dump(tasks, f)
+    except OSError as exc:
+        print(f"Erreur : impossible de mettre à jour les tâches. {exc}", file=sys.stderr)
 
 def remove_tasks(tasks_id: list[int]) -> None:
     """
