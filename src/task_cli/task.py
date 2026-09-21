@@ -5,7 +5,7 @@ from datetime import datetime
 from task_cli.storage import load_data, remove_data, save_data, update_data
 
 
-def create_tasks(descriptions: list[str]) -> None:
+def create_tasks(descriptions: list[str]) -> int:
     """
     Crée une nouvelle tâche.
 
@@ -16,7 +16,7 @@ def create_tasks(descriptions: list[str]) -> None:
     # Gestion des erreurs
     if not descriptions:
         print("Erreur : La description de la tâche est vide.")
-        return
+        return 1
 
     tasks = []
     task_id = len(load_data()) + 1
@@ -32,9 +32,9 @@ def create_tasks(descriptions: list[str]) -> None:
         task_id += 1
 
     save_data(tasks)
+    return 0
 
-
-def update_task(task_id: int, new_description: str) -> None:
+def update_task(task_id: int, new_description: str) -> int:
     """
     Met à jour la description d'une tâche existante.
 
@@ -47,21 +47,21 @@ def update_task(task_id: int, new_description: str) -> None:
     # Gestion des erreurs
     if not task_id or not new_description:
         print("Erreur : Aucun identifiant de tâche ou description spécifié.")
-        return
+        return 1
 
     if not isinstance(task_id, int):
         print("Erreur : L'identifiant de la tâche doit être un entier.")
-        return
+        return 1
 
     if not isinstance(new_description, str):
         print("Erreur : La description de la tâche doit être une chaîne de caractères.")
-        return
+        return 1
 
     data = load_data()
 
     if not data:
         print("Aucune tâche trouvée.")
-        return
+        return 1
 
     for task in data:
         if task["id"] == task_id:
@@ -72,9 +72,10 @@ def update_task(task_id: int, new_description: str) -> None:
         print("Tâche non trouvée.")
 
     update_data(data)
+    return 0
 
 
-def delete_tasks(tasks_id: list[int]) -> None:
+def delete_tasks(tasks_id: list[int]) -> int:
     """
     Supprime une tâche existante.
 
@@ -83,10 +84,11 @@ def delete_tasks(tasks_id: list[int]) -> None:
     """
 
     remove_data(tasks_id)
+    return 0
 
 
 # Marquer une tâche en cours
-def mark_in_progress(task_id: int) -> None:
+def mark_in_progress(task_id: int) -> int:
     """
     Marque une tâche comme en cours.
 
@@ -97,17 +99,17 @@ def mark_in_progress(task_id: int) -> None:
     # Gestion des erreurs
     if not task_id:
         print("Erreur : Aucun identifiant de tâche spécifié.")
-        return
+        return 1
 
     if not isinstance(task_id, int):
         print("Erreur : L'identifiant de la tâche doit être un entier.")
-        return
+        return 1
 
     data = load_data()
 
     if not data:
         print("Aucune tâche trouvée.")
-        return
+        return 1
 
     for task in data:
         if task["id"] == task_id:
@@ -118,10 +120,11 @@ def mark_in_progress(task_id: int) -> None:
         print("Tâche non trouvée.")
 
     update_data(data)
+    return 0
 
 
 # Marquer une tâche comme terminé
-def mark_done(task_id: int) -> None:
+def mark_done(task_id: int) -> int:
     """
     Marque une tâche comme terminée.
 
@@ -132,17 +135,17 @@ def mark_done(task_id: int) -> None:
     # Gestion des erreurs
     if not task_id:
         print("Erreur : Aucun identifiant de tâche spécifié.")
-        return
+        return 1
 
     if not isinstance(task_id, int):
         print("Erreur : L'identifiant de la tâche doit être un entier.")
-        return
+        return 1
 
     data = load_data()
 
     if not data:
         print("Aucune tâche trouvée.")
-        return
+        return 1
 
     for task in data:
         if task["id"] == task_id:
@@ -153,10 +156,11 @@ def mark_done(task_id: int) -> None:
         print("Tâche non trouvée.")
 
     update_data(data)
+    return 0
 
 
 # Lister les tâches
-def list_tasks() -> None:
+def list_tasks() -> int:
     """
     Liste toutes les tâches.
 
@@ -168,9 +172,10 @@ def list_tasks() -> None:
     # # Gestion des erreurs
     if not tasks:
         print("Aucune tâche trouvée.")
-        return
+        return 1
 
     for index, task in enumerate(tasks, start=1):
         description = task.get("description", "")
         task_status = task.get("status", "todo")
         print(f"{index:>2}- {description:<30} [{task_status.upper():^11}] ")
+    return 0
