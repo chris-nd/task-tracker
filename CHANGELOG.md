@@ -1,3 +1,9 @@
+## v1.1.0 (2026-09-21)
+
+### Refactor
+
+- **tests**: réoganisation des fichiers
+
 ## v1.1.0-b0 (2026-09-21)
 
 ### Feat
