@@ -1,3 +1,10 @@
+## v0.10.0-b1 (2026-09-21)
+
+### Fix
+
+- **storage**: gére les erreurs de manière robuste
+- **task**: gére les erreurs de manière robuste
+
 ## v0.10.0-b0 (2026-09-20)
 
 ### Refactor
