@@ -9,6 +9,7 @@ from task_cli.task import (
     mark_done,
     mark_in_progress,
     update_task,
+    filter_list_tasks
 )
 
 
@@ -155,7 +156,14 @@ def main():
     elif args.command == "mark-done":
         mark_done(args.id[0])
     elif args.command == "list":
-        list_tasks()
+        if args.status == "todo":
+            filter_list_tasks("todo")
+        elif args.status == "in-progress":
+            filter_list_tasks("in-progress")
+        elif args.status == "done":
+            filter_list_tasks("done")
+        else:
+            list_tasks()
 
     return 0
 
