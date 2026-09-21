@@ -14,3 +14,9 @@ wheels/
 
 # Data files
 src/task_cli/data/
+
+# Code Editor config
+.vscode
+
+# Pytest cache
+.pytest_cache
