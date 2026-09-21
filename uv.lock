@@ -556,7 +556,7 @@ wheels = [
 
 [[package]]
 name = "task-cli"
-version = "0.10.0-b0"
+version = "0.10.0-b1"
 source = { editable = "." }
 
 [package.dev-dependencies]
