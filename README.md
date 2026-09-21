@@ -9,6 +9,7 @@ Application en ligne de commande permettant de créer et gérer des tâches.
 - Attribuer un statut à chaque tâche
 - Modifier la description et le statut d’une tâche
 - Supprimer une tâche ou plusieurs tâches
+- Filter les tâches par status
 - Sauvegarde persistante des données localement
 
 ## Statuts disponibles
@@ -73,6 +74,9 @@ task-cli mark-in-progress 1
 task-cli mark-done 1
 task-cli update 2 "Faire les courses"
 task-cli delete 3
+task-cli list todo
+task-cli list in-progress
+task-cli list done
 ```
 
 ## Structure du projet
