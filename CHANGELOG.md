@@ -1,3 +1,15 @@
+## v0.10.0-rc0 (2026-09-21)
+
+### Fix
+
+- **storage**: gére les erreurs de manière robuste
+- **task**: gére les erreurs de manière robuste
+
+### Refactor
+
+- **storage**: extratation du chemin dans une variable
+- **storage**: extratation du chemin dans une variable
+
 ## v0.10.0-b1 (2026-09-21)
 
 ### Fix

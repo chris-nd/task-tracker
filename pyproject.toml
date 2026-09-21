@@ -1,6 +1,6 @@
 [project]
 name = "task-cli"
-version = "0.10.0-b1"
+version = "0.10.0-rc0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
