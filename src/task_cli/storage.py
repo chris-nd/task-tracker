@@ -48,7 +48,7 @@ def load_data() -> list[dict]:
         return []
 
 
-def save_data(tasks: list[dict]) -> None:
+def save_data(tasks: list[dict]) -> int:
     """
     Sauvegarder les tâches dans le fichier JSON.
 
@@ -57,7 +57,7 @@ def save_data(tasks: list[dict]) -> None:
     """
 
     if not tasks:
-        return
+        return 1
 
     dir_path = Path("src/task_cli/data/")
 
@@ -72,8 +72,10 @@ def save_data(tasks: list[dict]) -> None:
     except OSError as exc:
         print(f"Erreur : impossible de sauvegarder les tâches. {exc}", file=sys.stderr)
 
+    return 0
 
-def update_data(tasks: list[dict]) -> None:
+
+def update_data(tasks: list[dict]) -> int:
     """
     Mettre à jour les tâches dans le fichier JSON.
     """
@@ -81,11 +83,11 @@ def update_data(tasks: list[dict]) -> None:
     # Gestion des erreurs
     if not tasks:
         print("Erreur : Aucune tâche à mettre à jour.")
-        return
+        return 1
 
     if not isinstance(tasks, list):
         print("Erreur : Les tâches doivent être une liste pour être mises à jour.")
-        return
+        return 1
 
     try:
         with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
@@ -95,8 +97,10 @@ def update_data(tasks: list[dict]) -> None:
             f"Erreur : impossible de mettre à jour les tâches. {exc}", file=sys.stderr
         )
 
+    return 0
 
-def remove_data(tasks_id: list[int]) -> None:
+
+def remove_data(tasks_id: list[int]) -> int:
     """
     Supprimer une ou plusieurs tâches du fichier JSON.
     """
@@ -104,13 +108,13 @@ def remove_data(tasks_id: list[int]) -> None:
 
     if not data:
         print("Aucune tâche enregistrée.")
-        return
+        return 1
 
     task_to_delete = [task for task in data if task.get("id") in tasks_id]
 
     if not task_to_delete:
         print("Tâche non trouvée.")
-        return
+        return 1
 
     try:
         with open("src/task_cli/data/tasks.json", "w", encoding="utf-8") as f:
@@ -122,3 +126,5 @@ def remove_data(tasks_id: list[int]) -> None:
 
     for task in task_to_delete:
         print(f"Tâche supprimée : [ID: {task.get('id')} - {task.get('description')}].")
+
+    return 0
