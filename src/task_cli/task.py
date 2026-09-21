@@ -179,3 +179,27 @@ def list_tasks() -> int:
         task_status = task.get("status", "todo")
         print(f"{index:>2}- {description:<30} [{task_status.upper():^11}] ")
     return 0
+
+
+# Lister les tâches par status
+def filter_list_tasks(status: str) -> int:
+    """
+    Liste les tâches par statut.
+
+    :param status: Le statut des tâches à lister
+    :type status: str
+    :return: Le code de retour.
+    """
+    tasks = load_data()
+
+    # Gestion des erreurs
+    if not tasks:
+        print("Aucune tâche trouvée.")
+        return 1
+
+    for index, task in enumerate(tasks, start=1):
+        if task.get("status") == status:
+            description = task.get("description", "")
+            task_status = task.get("status", "todo")
+            print(f"{index:>2}- {description:<30} [{task_status.upper():^11}]")
+    return 0
