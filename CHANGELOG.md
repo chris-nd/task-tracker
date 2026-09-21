@@ -1,7 +1,8 @@
-## Unreleased
+## v1.1.0-b0 (2026-09-21)
 
 ### Feat
 
+- **cli**: Ajout du parser pour lister les tâches par status
 - **task**: filtre les tâches par status
 
 ## v1.0.0 (2026-09-21)
