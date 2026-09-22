@@ -25,7 +25,7 @@ jobs:
       - name: Installer les dépendances
         run: |
           python -m pip install --upgrade pip
-          pip install sphinx furo sphinx.ext.autodoc
+          pip install sphinx furo
 
       - name: Générer la documentation HTML
         run: |
