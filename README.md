@@ -1,6 +1,9 @@
 # Task Tracker
 
-![GitHub Workflow Status](https://shields.io) [![GitHub release](https://shields.io)](https://github.com) ![Python Version](https://shields.io) [![Documentation](https://shields.io)](https://chris-nd.github.io/task-tracker/)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/:chris-nd/:task-tracker/:workflow)
+[![GitHub release](https://img.shields.io/github/v/release/:chris-nd/:task-tracker)](https://github.com/chris-nd/task-tracker)
+![Python Version](https://img.shields.io/python/v/python)
+[![Documentation](https://img.shields.io/badge/documentation-sphinx-blue)](https://chris-nd.github.io/task-tracker/)
 
 Application en ligne de commande permettant de créer et gérer des tâches.
 
