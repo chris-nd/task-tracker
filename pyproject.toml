@@ -1,6 +1,6 @@
 [project]
 name = "task-cli"
-version = "1.1.0"
+version = "1.2.0"
 description = "Application en ligne de commande permettant de créer et gérer des tâches."
 readme = "README.md"
 authors = [

@@ -1,3 +1,13 @@
+## v1.2.0 (2026-09-22)
+
+### Feat
+
+- **task**: Ajout d'un retour visuel après l'exécution de chaque commande
+
+### Fix
+
+- **cli**: Ajout d'un espace en début et fin de l'affichage de la CLI
+
 ## v1.1.0 (2026-09-21)
 
 ### Refactor
