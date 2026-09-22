@@ -1,32 +1,40 @@
 Package task_cli
 ================
 
-Le package ``task_cli`` contient la logique métier et la couche d'interaction de
-l'application en ligne de commande. Il regroupe les composants nécessaires pour
-créer, consulter, modifier, filtrer et supprimer des tâches.
+Le package ``task_cli`` centralise toute la logique métier de l'application en
+ligne de commande. Il permet de créer, lister, modifier, filtrer et supprimer
+les tâches tout en gardant une persistance locale simple via un fichier JSON.
 
-Aperçu
-------
+Vue d'ensemble
+--------------
 
-Le package ``task_cli`` centralise la logique de gestion des tâches pour
-l'application en ligne de commande. Il regroupe les éléments nécessaires au
-traitement des commandes utilisateur, à la validation des données, à la
-persistance locale et à la représentation du modèle de tâche.
+Ce package est organisé selon une séparation claire des responsabilités :
 
-Le module principal expose le cœur de l'application et sert de point d'entrée
-pour les opérations CRUD liées aux tâches : ajout, mise à jour, suppression,
-listage et filtrage selon le statut.
+- ``task_cli.cli`` : interaction avec l'utilisateur et parsing des commandes ;
+- ``task_cli.model`` : définition du modèle de données et des statuts ;
+- ``task_cli.storage`` : lecture et écriture des tâches sur le disque ;
+- ``task_cli.task`` : logique métier pour manipuler les tâches.
 
-Les classes et fonctions du package sont structurées de manière à séparer :
+Cette structure rend le code plus lisible, plus facile à tester et plus simple à
+étendre.
 
-- la saisie utilisateur et le parsing des commandes dans ``task_cli.cli`` ;
-- le modèle métier des tâches dans ``task_cli.model`` ;
-- la persistance des données dans ``task_cli.storage`` ;
-- les opérations de gestion des tâches dans ``task_cli.task``.
+Architecture du package
+-----------------------
 
-Cette organisation permet de garder le code maintenable, de tester chaque
-composant indépendamment et de faciliter l'évolution de l'interface en ligne de
-commande.
+.. list-table:: Rôle des modules
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Module
+     - Description
+   * - ``task_cli.cli``
+     - Gère les commandes de l'interface terminal et le point d'entrée principal.
+   * - ``task_cli.model``
+     - Déclare le modèle ``Task`` et l'énumération des statuts.
+   * - ``task_cli.storage``
+     - Lit et écrit les données de façon persistante dans le fichier JSON local.
+   * - ``task_cli.task``
+     - Implémente les opérations de création, modification, suppression et filtrage.
 
 .. automodule:: task_cli
    :no-index:
@@ -36,43 +44,47 @@ commande.
 Sous-modules
 ------------
 
-task_cli.cli
-^^^^^^^^^^^^
 
-Ce module gère le parsing des commandes et le point d'entrée principal de
-l'application.
+Module CLI
+^^^^^^^^^^
+
+Ce module gère le parsing des commandes de l'application et oriente chaque
+appel vers la bonne logique métier.
 
 .. automodule:: task_cli.cli
    :members:
    :undoc-members:
    :show-inheritance:
 
-task_cli.model
-^^^^^^^^^^^^^^
 
-Ce module définit le modèle de données des tâches et les statuts pris en charge.
+Module de modèle
+^^^^^^^^^^^^^^^^
+
+Ce module définit le modèle de données des tâches ainsi que les statuts pris en
+charge par l'application.
 
 .. automodule:: task_cli.model
    :members:
    :undoc-members:
    :show-inheritance:
 
-task_cli.storage
-^^^^^^^^^^^^^^^^
 
-Ce module lit et écrit les tâches dans le fichier JSON local utilisé pour la
-persistance des données.
+Module de stockage
+^^^^^^^^^^^^^^^^^^
+
+Ce module s'occupe de la persistance locale des tâches dans le fichier JSON.
 
 .. automodule:: task_cli.storage
    :members:
    :undoc-members:
    :show-inheritance:
 
-task_cli.task
+
+Module métier
 ^^^^^^^^^^^^^
 
-Ce module contient les opérations de gestion des tâches : création, mise à jour,
-validation du statut, filtrage et affichage.
+Ce module contient la logique principale pour manipuler les tâches : ajout,
+mise à jour, suppression, listage et filtrage par statut.
 
 .. automodule:: task_cli.task
    :members:
