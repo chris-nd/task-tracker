@@ -7,7 +7,10 @@ authors = [
     { name = "Chris Nd", email = "50488760+chris-nd@users.noreply.github.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "furo>=2025.12.19",
+    "sphinx>=9.1.0",
+]
 
 [project.scripts]
 task-cli = "task_cli.cli:main"
@@ -20,9 +23,7 @@ build-backend = "uv_build"
 dev = [
     "commitizen>=4.18.1",
 ]
-docs = [
-    "sphinx>=9.1.0",
-]
+
 tests = [
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
