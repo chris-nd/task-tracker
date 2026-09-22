@@ -31,8 +31,16 @@ def create_tasks(descriptions: list[str]) -> int:
         tasks.append(task)
         task_id += 1
 
-    save_data(tasks)
+    exit_code = save_data(tasks)
+    if not exit_code:
+        if len(tasks) > 1:
+            print("Les tâches ont été ajoutées avec succès.")
+        else:
+            print("La tâche a été ajoutée avec succès.")
+    else:
+        print("Une erreur est survenue lors de l'ajout des tâches.")
     return 0
+
 
 def update_task(task_id: int, new_description: str) -> int:
     """
@@ -71,7 +79,13 @@ def update_task(task_id: int, new_description: str) -> int:
     else:
         print("Tâche non trouvée.")
 
-    update_data(data)
+    exit_code = update_data(data)
+    if not exit_code:
+        print("La tâche a été mise à jour avec succès.")
+    else:
+        print("Une erreur est survenue lors de la mise à jour de la tâche.")
+        return 1
+
     return 0
 
 
@@ -118,8 +132,14 @@ def mark_in_progress(task_id: int) -> int:
             break
     else:
         print("Tâche non trouvée.")
+        return 1
 
-    update_data(data)
+    exit_code = update_data(data)
+    if not exit_code:
+        print("La tâche a été marquée comme en cours avec succès.")
+    else:
+        print("Une erreur est survenue lors du marquage de la tâche comme en cours.")
+        return 1
     return 0
 
 
@@ -154,8 +174,14 @@ def mark_done(task_id: int) -> int:
             break
     else:
         print("Tâche non trouvée.")
+        return 1
 
-    update_data(data)
+    exit_code = update_data(data)
+    if not exit_code:
+        print("La tâche a été marquée comme terminée.")
+    else:
+        print("Une erreur est survenue lors du marquage de la tâche comme terminée.")
+        return 1
     return 0
 
 
@@ -197,9 +223,16 @@ def filter_list_tasks(status: str) -> int:
         print("Aucune tâche trouvée.")
         return 1
 
+    is_task = False
+
     for index, task in enumerate(tasks, start=1):
         if task.get("status") == status:
+            is_task = True
             description = task.get("description", "")
             task_status = task.get("status", "todo")
             print(f"{index:>2}- {description:<30} [{task_status.upper():^11}]")
+
+    if not is_task:
+        print(f"Aucune tâche trouvée avec le statut '{status.upper()}'.")
+
     return 0
