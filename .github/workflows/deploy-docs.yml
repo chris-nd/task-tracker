@@ -6,6 +6,8 @@ on:
       - main
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -28,10 +30,10 @@ jobs:
         run: |
           cd docs
           make html
+          touch build/html/.nojekyll
 
       - name: Déployer sur GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/build/html
-          force_orphan: true
