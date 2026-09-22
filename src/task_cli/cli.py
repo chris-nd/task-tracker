@@ -1,6 +1,7 @@
 "Module de point d'entrée de l'application"
 
 import argparse
+import sys
 
 from task_cli.task import (
     create_tasks,
@@ -145,6 +146,8 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
 
+    sys.stdout.write("\n")
+
     if args.command == "add":
         create_tasks(args.task)
     elif args.command == "update":
@@ -164,6 +167,8 @@ def main():
             filter_list_tasks("done")
         else:
             list_tasks()
+
+    sys.stdout.write("\n")
 
     return 0
 
