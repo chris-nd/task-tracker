@@ -191,3 +191,35 @@ Voici un exemple complet d'utilisation :
 
 Ce type de séquence permet de gérer simplement un backlog de tâches tout en
 maintenant une vue claire de l'avancement.
+
+Téléchargement de la dernière version stable
+--------------------------------------------
+
+La dernière version stable du projet est disponible sur GitHub. Vous pouvez la
+récupérer depuis le dépôt officiel pour installer ou tester le projet sur votre
+machine :
+
+- GitHub : https://github.com/chris-nd/task-tracker/releases/tag/v1.2.0
+
+Pour télécharger une release spécifique, rendez-vous sur la page des releases du
+référentiel et téléchargez le fichier correspondant à votre système.
+
+Contribuer
+----------
+
+Les contributions sont les bienvenues. Pour participer au projet :
+
+1. Forkez le dépôt GitHub.
+2. Créez une branche dédiée pour votre modification.
+3. Implémentez votre changement avec des tests si nécessaire.
+4. Ouvrez une pull request avec une description claire du problème traité et de
+   la solution proposée.
+
+Avant de soumettre une contribution, il est recommandé d'exécuter les tests du
+projet :
+
+.. code-block:: bash
+
+   uv run pytest
+
+Merci de garder le code lisible et bien documenté
