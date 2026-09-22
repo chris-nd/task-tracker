@@ -85,11 +85,23 @@ task-cli list done
 task-tracker/
 ├── src/
 │   └── task_cli/
+│       ├── __init__.py
 │       ├── cli.py
-│       └── ...
+│       ├── model.py
+│       ├── storage.py
+│       ├── task.py
+│       └── data/
+│           └── tasks.json
+├── tests/
+│   ├── test_cli.py
+│   ├── test_storage.py
+│   ├── test_task.py
+│   └── test_temp_file.py
 ├── README.md
 ├── pyproject.toml
-└── uv.lock
+├── CHANGELOG.md
+├── uv.lock
+└── .gitignore
 ```
 
 ## Modèle d’une tâche
