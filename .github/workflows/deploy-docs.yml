@@ -10,6 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# Permet de bloquer les builds simultanés et d'annuler les builds obsolètes en file d'attente
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   deploy:
     environment:
@@ -40,6 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/build/html
+          retention-days: 1 # Évite l'accumulation d'artéfacts obsolètes
 
       - name: Déployer le site
         id: deployment
